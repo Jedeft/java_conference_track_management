@@ -16,7 +16,7 @@ public class ScheduleTest {
         try {
             Schedule.ScheduleConference("input.txt");
         } catch (IOException e) {
-            System.out.println(e);
+            e.printStackTrace();
             assertTrue(false);
         }
 
@@ -33,8 +33,8 @@ public class ScheduleTest {
         try {
             Schedule.ScheduleConference("input.txt");
         } catch (IOException e) {
+            e.printStackTrace();
             assertTrue(false);
-            System.out.println(e);
         }
 
         try {
