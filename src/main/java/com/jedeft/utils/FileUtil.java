@@ -18,7 +18,7 @@ public class FileUtil {
         try {
             fr = new FileReader(file);
             br = new BufferedReader(fr);
-            String line = null;
+            String line;
             while ((line = br.readLine()) != null) {
                 lineList.add(line);
             }

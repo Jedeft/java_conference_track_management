@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class Schedule {
 
+    /**
+     * @param filePath: input filePath
+     * @throws IOException
+     */
     public static void ScheduleConference(String filePath) throws IOException {
         List<String> lineList = FileUtil.loadFile(filePath);
         List<Talk> talkList = fillTalkList(lineList);
@@ -26,14 +30,11 @@ public class Schedule {
      */
     public static List<Talk> fillTalkList(List<String> lineList) {
         List<Talk> talkList = new ArrayList<>();
+        Talk talk = null;
         for (String line : lineList) {
-            Talk talk = new Talk(line, 0);
+            talk = new Talk(line, 0);
             String[] wordArray = line.split(" ");
-            try {
-                talk.setDuration(wordArray[wordArray.length - 1]);
-            } catch (RuntimeException e) {
-                e.printStackTrace();
-            }
+            talk.parseDuration(wordArray[wordArray.length - 1]);
             talkList.add(talk);
         }
         return talkList;

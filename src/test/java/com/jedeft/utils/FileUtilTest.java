@@ -14,8 +14,8 @@ public class FileUtilTest {
         try {
             FileUtil.loadFile("input.txt");
         } catch (IOException e) {
-            assertTrue(false);
             System.out.println(e);
+            assertTrue(false);
         }
 
         try {

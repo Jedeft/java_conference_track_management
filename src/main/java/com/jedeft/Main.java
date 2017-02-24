@@ -17,7 +17,7 @@ public class Main {
         }
         try {
             Schedule.ScheduleConference(args[0]);
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.error(e);
             System.exit(-1);
         }

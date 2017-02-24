@@ -39,11 +39,11 @@ public class Talk {
         isSchedule = schedule;
     }
 
-    public void setDuration(String str) throws RuntimeException {
+    public void parseDuration(String str) throws RuntimeException {
         if (str.contains("min")) {
             this.duration = Integer.parseInt(str.replace("min", ""));
         } else if (str.contains("lightning")) {
-            this.duration = Config.lightning;
+            this.duration = Config.LIGHTNING;
         } else {
             throw new RuntimeException("Error time : " + str);
         }
