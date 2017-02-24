@@ -1,10 +1,8 @@
 package com.jedeft;
 
-import com.jedeft.utils.FileUtil;
+import com.jedeft.schedule.Schedule;
 import org.apache.log4j.Logger;
-
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by jedeft on 2017/2/24.
@@ -18,10 +16,7 @@ public class Main {
             System.exit(-1);
         }
         try {
-            List<String> lineList = FileUtil.loadFile(args[0]);
-            for (String line : lineList) {
-                System.out.println(line);
-            }
+            Schedule.ScheduleConference(args[0]);
         } catch (IOException e) {
             logger.error(e);
             System.exit(-1);

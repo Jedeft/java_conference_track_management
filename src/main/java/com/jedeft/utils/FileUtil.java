@@ -13,11 +13,22 @@ public class FileUtil {
     public static List<String> loadFile(String filePath) throws IOException {
         List<String> lineList = new ArrayList<>();
         File file = new File(filePath);
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
-        String line = null;
-        while ((line = br.readLine()) != null) {
-            lineList.add(line);
+        FileReader fr = null;
+        BufferedReader br = null;
+        try {
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                lineList.add(line);
+            }
+        } finally {
+            if (fr != null) {
+                fr.close();
+            }
+            if (br != null) {
+                br.close();
+            }
         }
         return lineList;
     }
