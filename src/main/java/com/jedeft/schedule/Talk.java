@@ -5,7 +5,7 @@ import com.jedeft.config.TimeConstant;
 /**
  * Created by jedeft on 2017/2/24.
  */
-public class Talk {
+public class Talk implements Comparable<Talk>{
     private String topic;
     private int duration;
     private boolean isSchedule;
@@ -85,5 +85,19 @@ public class Talk {
         return result;
     }
 
-
+    /**
+     * order desc
+     * @param o
+     * @return
+     */
+    @Override
+    public int compareTo(Talk o) {
+        if (this.duration == o.getDuration())  {
+            return 0;
+        } else if (this.duration < o.getDuration()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

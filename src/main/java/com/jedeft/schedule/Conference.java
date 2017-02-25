@@ -1,8 +1,11 @@
 package com.jedeft.schedule;
 
 import com.jedeft.config.TimeConstant;
+import com.jedeft.utils.DateUtil;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static javafx.scene.input.KeyCode.T;
@@ -81,9 +84,8 @@ public class Conference {
      * schedule afternoon session
      *
      * @param talkList total talks
-     * @param isLast   true means only one day or last day
      */
-    public void scheduleAfternoonSession(List<Talk> talkList, boolean isLast) {
+    public void scheduleAfternoonSession(List<Talk> talkList) {
         for (int i = 0; i < talkList.size(); i++) {
             List<Talk> afternoonSession = new ArrayList<>();
             int totalDuration = 0;
@@ -109,5 +111,20 @@ public class Conference {
                 break;
             }
         }
+    }
+
+    public void output() throws ParseException {
+        String time = "09:00";
+        for (Talk talk : this.morningSession) {
+            System.out.println(time + "AM " + talk.getTopic());
+            time = DateUtil.addTime(time, talk.getDuration());
+        }
+        System.out.println("12:00PM Lunch");
+        time = "13:00";
+        for (Talk talk : this.afternoonSession) {
+            System.out.println(time + "PM " + talk.getTopic());
+            time = DateUtil.addTime(time, talk.getDuration());
+        }
+        System.out.println("05:00PM Networking Event");
     }
 }

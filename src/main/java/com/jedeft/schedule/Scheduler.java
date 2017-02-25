@@ -1,9 +1,13 @@
 package com.jedeft.schedule;
 
+import com.jedeft.config.TimeConstant;
 import com.jedeft.utils.FileUtil;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -14,11 +18,25 @@ public class Scheduler {
      * @param filePath input filePath
      * @throws IOException
      */
-    public static void ScheduleConference(String filePath) throws IOException {
+    public static void ScheduleConference(String filePath) throws IOException, ParseException {
         List<String> lineList = FileUtil.loadFile(filePath);
         List<Talk> talkList = fillTalkList(lineList);
-        for (Talk talk : talkList) {
-            System.out.println(talk);
+        Collections.sort(talkList);
+        int totalDuration = getTotalDuration(talkList);
+        int totalDay = totalDuration / TimeConstant.DAY_MAX_DURATION + 1;
+        List<Conference> conferenceList = new ArrayList<>();
+        Conference conference;
+        for (int i = 0; i < totalDay; i++) {
+            conference = new Conference();
+            conference.scheduleMorningSession(talkList, i == totalDay - 1);
+            conferenceList.add(conference);
+        }
+        for (int i = 0; i < totalDay; i++) {
+            conferenceList.get(i).scheduleAfternoonSession(talkList);
+        }
+        for (int i = 0; i < conferenceList.size(); i++) {
+            System.out.println("track : " + (i + 1));
+            conferenceList.get(i).output();
         }
     }
 
@@ -40,6 +58,7 @@ public class Scheduler {
 
     /**
      * get unScheduled talk duration
+     *
      * @param talkList
      * @return
      */

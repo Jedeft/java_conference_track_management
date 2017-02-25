@@ -72,7 +72,7 @@ public class ConferenceTest {
         Conference conference1 = new Conference();
         conference1.scheduleMorningSession(oneDay, true);
         assertArrayEquals(oneDayExpect.getMorningSession().toArray(), conference1.getMorningSession().toArray());
-        conference1.scheduleAfternoonSession(oneDay, true);
+        conference1.scheduleAfternoonSession(oneDay);
         assertArrayEquals(oneDayExpect.getAfternoonSession().toArray(), conference1.getAfternoonSession().toArray());
 
         List<Conference> track = new ArrayList<>();
@@ -82,7 +82,7 @@ public class ConferenceTest {
             track.get(i).scheduleMorningSession(twoDays, i == track.size());
         }
         for (int i = 0; i < 2; i++) {
-            track.get(i).scheduleAfternoonSession(twoDays, i == track.size());
+            track.get(i).scheduleAfternoonSession(twoDays);
         }
         for (int i = 0; i < track.size(); i++) {
             assertArrayEquals(twoDaysExpect.get(i).getMorningSession().toArray(), track.get(i).getMorningSession().toArray());

@@ -39,7 +39,7 @@ public class SchedulerTest {
     public void testScheduleConference() {
         try {
             Scheduler.ScheduleConference("input.txt");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
         }
@@ -47,7 +47,7 @@ public class SchedulerTest {
         try {
             Scheduler.ScheduleConference("errorFile.txt");
             assertTrue(false);
-        } catch (IOException e) {
+        } catch (Exception e) {
             assertTrue(true);
         }
     }
@@ -56,7 +56,7 @@ public class SchedulerTest {
     public void testFillTalkList() {
         try {
             Scheduler.ScheduleConference("input.txt");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
         }
@@ -64,7 +64,7 @@ public class SchedulerTest {
         try {
             Scheduler.ScheduleConference("errorFile.txt");
             assertTrue(false);
-        } catch (IOException e) {
+        } catch (Exception e) {
             assertTrue(true);
         }
     }
