@@ -37,6 +37,7 @@ public class Scheduler {
         for (int i = 0; i < conferenceList.size(); i++) {
             System.out.println("track : " + (i + 1));
             conferenceList.get(i).output();
+            System.out.println();
         }
     }
 

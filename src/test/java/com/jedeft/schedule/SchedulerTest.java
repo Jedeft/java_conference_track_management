@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.jedeft.schedule.Scheduler.fillTalkList;
+import static com.sun.tools.internal.xjc.reader.Ring.add;
 import static org.junit.Assert.*;
 
 /**
@@ -54,19 +56,10 @@ public class SchedulerTest {
 
     @Test
     public void testFillTalkList() {
-        try {
-            Scheduler.ScheduleConference("input.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-            assertTrue(false);
-        }
-
-        try {
-            Scheduler.ScheduleConference("errorFile.txt");
-            assertTrue(false);
-        } catch (Exception e) {
-            assertTrue(true);
-        }
+        List<String> lineList = new ArrayList<>();
+        lineList.add("test topic 50min");
+        List<Talk> talkList = Scheduler.fillTalkList(lineList);
+        assertEquals(new Talk("test topic 50min", 50), talkList.get(0));
     }
 
     @Test
