@@ -1,6 +1,5 @@
 package com.jedeft.schedule;
 
-import com.jedeft.bean.Talk;
 import com.jedeft.utils.FileUtil;
 
 import java.io.IOException;
@@ -10,10 +9,9 @@ import java.util.List;
 /**
  * Created by jedeft on 2017/2/24.
  */
-public class Schedule {
-
+public class Scheduler {
     /**
-     * @param filePath: input filePath
+     * @param filePath input filePath
      * @throws IOException
      */
     public static void ScheduleConference(String filePath) throws IOException {
@@ -25,7 +23,7 @@ public class Schedule {
     }
 
     /**
-     * @param lineList: data from file lines
+     * @param lineList data from file lines
      * @return
      */
     public static List<Talk> fillTalkList(List<String> lineList) {
@@ -38,5 +36,34 @@ public class Schedule {
             talkList.add(talk);
         }
         return talkList;
+    }
+
+    /**
+     * get unScheduled talk duration
+     * @param talkList
+     * @return
+     */
+    public static int getTotalDuration(List<Talk> talkList) {
+        int totalDuration = 0;
+        for (Talk talk : talkList) {
+            if (!talk.isSchedule()) {
+                totalDuration += talk.getDuration();
+            }
+        }
+        return totalDuration;
+    }
+
+    /**
+     * set talks scheduled whitch contained from scheduledList
+     *
+     * @param totalList     all totalks
+     * @param scheduledList be sheduled talks
+     */
+    public static void setListSchedule(List<Talk> totalList, List<Talk> scheduledList) {
+        for (int i = 0; i < totalList.size(); i++) {
+            if (scheduledList.contains(totalList.get(i))) {
+                totalList.get(i).setSchedule(true);
+            }
+        }
     }
 }

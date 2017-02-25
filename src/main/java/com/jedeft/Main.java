@@ -1,8 +1,7 @@
 package com.jedeft;
 
-import com.jedeft.schedule.Schedule;
+import com.jedeft.schedule.Scheduler;
 import org.apache.log4j.Logger;
-import java.io.IOException;
 
 /**
  * Created by jedeft on 2017/2/24.
@@ -16,7 +15,7 @@ public class Main {
             System.exit(-1);
         }
         try {
-            Schedule.ScheduleConference(args[0]);
+            Scheduler.ScheduleConference(args[0]);
         } catch (Exception e) {
             logger.error(e);
             System.exit(-1);
