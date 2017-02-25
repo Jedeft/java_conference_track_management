@@ -1,6 +1,6 @@
 package com.jedeft.schedule;
 
-import com.jedeft.config.TimeConstant;
+import com.jedeft.constant.TimeConstant;
 
 /**
  * Created by jedeft on 2017/2/24.

@@ -1,4 +1,4 @@
-package com.jedeft.config;
+package com.jedeft.constant;
 
 /**
  * Created by jedeft on 2017/2/24.
