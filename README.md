@@ -78,7 +78,7 @@ Track 2:
 ### program info:
 * develop system : macOS 10.12.3
 * develop IDE : IntelliJ IDEA
-* java version : 1.8.0_121
+* Java version : 1.8.0_121
 * maven version : 3.3.9
 
 ### how to test:
