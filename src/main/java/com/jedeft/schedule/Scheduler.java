@@ -22,7 +22,7 @@ public class Scheduler {
         List<Talk> talkList = fillTalkList(lineList);
         Collections.sort(talkList);
         int totalDuration = getTotalDuration(talkList);
-        int totalDay = totalDuration / TimeConstant.DAY_MAX_DURATION + 1;
+        int totalDay = (int) Math.ceil((double) totalDuration / (double) TimeConstant.DAY_MAX_DURATION);
         List<Conference> conferenceList = new ArrayList<>();
         Conference conference;
         for (int i = 0; i < totalDay; i++) {
@@ -33,7 +33,7 @@ public class Scheduler {
         for (int i = 0; i < totalDay; i++) {
             conferenceList.get(i).scheduleAfternoonSession(talkList);
         }
-        for (int i = 0; i < conferenceList.size(); i++) {
+        for (int i = 0, conferenceSize = conferenceList.size(); i < conferenceSize; i++) {
             System.out.println("track : " + (i + 1));
             conferenceList.get(i).output();
             System.out.println();
@@ -79,7 +79,7 @@ public class Scheduler {
      * @param scheduledList be sheduled talks
      */
     public static void setListSchedule(List<Talk> totalList, List<Talk> scheduledList) {
-        for (int i = 0; i < totalList.size(); i++) {
+        for (int i = 0, totalSize = totalList.size(); i < totalSize; i++) {
             if (scheduledList.contains(totalList.get(i))) {
                 totalList.get(i).setSchedule(true);
             }

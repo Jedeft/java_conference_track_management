@@ -3,12 +3,9 @@ package com.jedeft.schedule;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jedeft.schedule.Scheduler.fillTalkList;
-import static com.sun.tools.internal.xjc.reader.Ring.add;
 import static org.junit.Assert.*;
 
 /**

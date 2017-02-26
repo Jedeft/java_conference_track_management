@@ -6,8 +6,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sun.tools.doclint.Entity.ge;
-import static com.sun.tools.internal.xjc.reader.Ring.add;
 import static org.junit.Assert.*;
 
 /**
@@ -78,13 +76,13 @@ public class ConferenceTest {
         List<Conference> track = new ArrayList<>();
         track.add(new Conference());
         track.add(new Conference());
-        for (int i = 0; i < track.size(); i++) {
-            track.get(i).scheduleMorningSession(twoDays, i == track.size());
+        for (int i = 0, trakSize = track.size(); i < trakSize; i++) {
+            track.get(i).scheduleMorningSession(twoDays, i == trakSize);
         }
         for (int i = 0; i < 2; i++) {
             track.get(i).scheduleAfternoonSession(twoDays);
         }
-        for (int i = 0; i < track.size(); i++) {
+        for (int i = 0, trakSize = track.size(); i < trakSize; i++) {
             assertArrayEquals(twoDaysExpect.get(i).getMorningSession().toArray(), track.get(i).getMorningSession().toArray());
             assertArrayEquals(twoDaysExpect.get(i).getAfternoonSession().toArray(), track.get(i).getAfternoonSession().toArray());
         }

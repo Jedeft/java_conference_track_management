@@ -3,11 +3,12 @@ package com.jedeft;
 import com.jedeft.schedule.Scheduler;
 import org.apache.log4j.Logger;
 
+
 /**
  * Created by jedeft on 2017/2/24.
  */
 public class Main {
-    private static Logger logger = Logger.getLogger("management");
+    private static Logger logger = Logger.getLogger(Main.class);
 
     public static void main(String[] args) {
         if (args.length < 1) {

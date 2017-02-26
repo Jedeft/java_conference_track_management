@@ -50,26 +50,26 @@ public class Conference {
      * @param isLast   true means only one day or last day
      */
     public void scheduleMorningSession(List<Talk> talkList, boolean isLast) {
-        for (int i = 0; i < talkList.size(); i++) {
+        for (int i = 0, totalSize = talkList.size(); i < totalSize; i++) {
             List<Talk> morningSession = new ArrayList<>();
             int totalDuration = 0;
-            for (int j = i; j < talkList.size(); j++) {
+            for (int j = i, talkSize = talkList.size(); j < talkSize; j++) {
                 if (talkList.get(j).isSchedule()) {
                     continue;
                 }
                 if (talkList.get(j).getDuration() > TimeConstant.SESSION_MIN_DURATION ||
-                        talkList.get(j).getDuration() + totalDuration > TimeConstant.SESSION_MIN_DURATION) {
+                        (talkList.get(j).getDuration() + totalDuration > TimeConstant.SESSION_MIN_DURATION)) {
                     continue;
                 }
                 morningSession.add(talkList.get(j));
                 totalDuration += talkList.get(j).getDuration();
                 if (totalDuration == TimeConstant.SESSION_MIN_DURATION ||
-                        isLast && Scheduler.getTotalDuration(talkList) < TimeConstant.SESSION_MIN_DURATION) {
+                        (isLast && Scheduler.getTotalDuration(talkList) < TimeConstant.SESSION_MIN_DURATION)) {
                     break;
                 }
             }
             if (totalDuration == TimeConstant.SESSION_MIN_DURATION ||
-                    isLast && Scheduler.getTotalDuration(talkList) < TimeConstant.SESSION_MIN_DURATION) {
+                    (isLast && Scheduler.getTotalDuration(talkList) < TimeConstant.SESSION_MIN_DURATION)) {
                 this.morningSession = morningSession;
                 Scheduler.setListSchedule(talkList, morningSession);
                 break;
@@ -83,15 +83,15 @@ public class Conference {
      * @param talkList total talks
      */
     public void scheduleAfternoonSession(List<Talk> talkList) {
-        for (int i = 0; i < talkList.size(); i++) {
+        for (int i = 0, talkSize = talkList.size(); i < talkSize; i++) {
             List<Talk> afternoonSession = new ArrayList<>();
             int totalDuration = 0;
-            for (int j = i; j < talkList.size(); j++) {
+            for (int j = i, totalSize = talkList.size(); j < totalSize; j++) {
                 if (talkList.get(j).isSchedule()) {
                     continue;
                 }
                 if (talkList.get(j).getDuration() > TimeConstant.SESSION_MAX_DURATION ||
-                        talkList.get(j).getDuration() + totalDuration > TimeConstant.SESSION_MAX_DURATION) {
+                        (talkList.get(j).getDuration() + totalDuration > TimeConstant.SESSION_MAX_DURATION)) {
                     continue;
                 }
                 afternoonSession.add(talkList.get(j));
